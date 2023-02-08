@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacteaza-ne pentru o programare!</title>
+    <link rel="stylesheet" href="styleForm.css">
+    <link rel="icon" href="images/logo.jpg">
+</head>
+<body>
+    <div class="container">
+        <form onsubmit="sendEmail(); reset(); return false;">
+            <h3>Programeaza-te acum!</h3>
+            <input type="text" id="name" placeholder="Nume" required>
+            <input type="email" id="email" placeholder="Adresa de Email" required>
+            <input type="text" id="phone" placeholder="Numar de telefon" required>
+            <textarea id="message" rows="4" placeholder="Detalii programare (Data/ora/tip tunsoare etc)"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail(){
+            Email.send({
+                Host : "smtp.elasticemail.com",
+                Username : "adriantud00@yahoo.com",
+                Password : "986814234966BD0EA7C05F5329A826EFAA51",
+                To : 'adriantudurean00@gmail.com',
+                From : document.getElementById("email").value,
+                Subject : "Noua programare",
+                Body : "Nume: " + document.getElementById("name").value
+                    + "<br> Adresa de Email: " + document.getElementById("email").value
+                    + "<br> Numar de telefon: " + document.getElementById("phone").value
+                    + "<br> Detalii programare (Data/ora/tip tunsoare etc): " + document.getElementById("message").value
+            }).then(
+            message => alert(message)
+            );
+        }
+    </script>
+</body>
+</html>
